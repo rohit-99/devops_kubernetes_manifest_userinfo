@@ -1,19 +1,19 @@
 apiVersion: apps/v1 
 kind: Deployment    
 metadata:              
-  name: springboot-k8s-mysql
+  name: springboot-userinfo
 spec:                
   selector:         
     matchLabels:
-      app: springboot-k8s-mysql
-  replicas: 3        
+      app: springboot-userinfo
+  replicas: 1        
   template:
     metadata:
       labels:        
-        app: springboot-k8s-mysql
+        app: springboot-userinfo
     spec:
       containers:
-        - name: springboot-k8s-mysql
+        - name: springboot-userinfo-container
           image: rohitsutar/userinfo-springboot:v1
           ports:
             - containerPort: 8080                
@@ -21,20 +21,20 @@ spec:
           - name: DB_HOST   # Setting Database host address from configMap
             valueFrom: 
               configMapKeyRef:
-                name: db-conf  # name of configMap
+                name: hostname-dbname-config  # name of configMap
                 key: host
           - name: DB_NAME  # Setting Database name from configMap
             valueFrom:
               configMapKeyRef:
-                name: db-conf 
+                name: hostname-dbname-config
                 key: name
           - name: DB_USERNAME  # Setting Database username from Secret
             valueFrom:
               secretKeyRef:
-                name: db-credentials # Secret Name
+                name: db-nonroot-user-credentials # Secret Name
                 key: username
           - name: DB_PASSWORD # Setting Database password from Secret
             valueFrom:
               secretKeyRef:
-                name: db-credentials
+                name: db-nonroot-user-credentials
                 key: password 

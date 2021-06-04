@@ -1,9 +1,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: springboot-k8s-mysql
+  name: springboot-userinfo
   labels:
-    name: springboot-k8s-mysql
+    name: springboot-userinfo
 spec:
   ports:
     - nodePort: 30163
@@ -11,5 +11,5 @@ spec:
       targetPort: 8080
       protocol: TCP
   selector:
-    app: springboot-k8s-mysql
+    app: springboot-userinfo
   type: NodePort
