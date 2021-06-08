@@ -4,7 +4,6 @@ metadata:
   name: mysql 
   labels:
     app: mysql
-    tier: database
 spec:
   ports:
     - port: 3306
