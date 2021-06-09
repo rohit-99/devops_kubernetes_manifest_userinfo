@@ -4,4 +4,4 @@ metadata:
   name: hostname-dbname-config
 data:
  host: mysql
- name: test  
+ name: userinfo  
